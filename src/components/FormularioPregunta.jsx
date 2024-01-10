@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import Swal from 'react';
+import Swal from 'sweetalert2';
 
 export const FormularioPregunta = ({ addPregunta }) => {
     const [pregunta, setPregunta] = useState({

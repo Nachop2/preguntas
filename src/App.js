@@ -2,7 +2,8 @@ import logo from './logo.svg';
 import './App.css';
 
 import { useState } from 'react';
-import { FormularioPregunta } from './components/FormularioPregunta.jsx'
+import { FormularioPregunta } from './components/FormularioPregunta.jsx';
+import { PreguntasCreadas } from './components/PreguntasCreadas';
 
 let idActualPregunta = 0;
 
@@ -14,16 +15,21 @@ function App() {
     idActualPregunta++;
     setPreguntas([...preguntas, nueva]);
   }
-  
- 
-  
-  
-  
+
+
+
+
+
+
   return (
     <>
-    <FormularioPregunta
-    addPregunta={addQuestion}>
-  </FormularioPregunta>
+      <FormularioPregunta
+        addPregunta={addQuestion}>
+      </FormularioPregunta>
+
+      <PreguntasCreadas
+        preguntas={preguntas}
+      ></PreguntasCreadas>
     </>
   );
 }
