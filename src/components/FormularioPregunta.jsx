@@ -15,11 +15,9 @@ export const FormularioPregunta = ({ addPregunta }) => {
     const handleSubmit = (e) => {
         e.preventDefault();
         //Validate
-
         addPregunta({
             ...pregunta
         });
-
         Swal.fire({
             position: "top-end",
             icon: "success",
@@ -32,9 +30,7 @@ export const FormularioPregunta = ({ addPregunta }) => {
     const handleChange = (e) => {
         let nuevoValor = (e.target.type === "checkbox") ? e.target.checked : e.target.value;
 
-
         if (e.target.type === "radio") nuevoValor = parseInt(e.target.id[e.target.id.length - 1]);
-
 
         setPregunta({
             ...pregunta,
@@ -46,7 +42,7 @@ export const FormularioPregunta = ({ addPregunta }) => {
     return (
         //En cada elemento usamos el spreed operator ... para crear una copia del estado y modificar
         //el valor que ha cambiado
-        <form onSubmit={handleSubmit} >
+        <form className="m-5" onSubmit={handleSubmit} >
             <textarea
                 className="form-control mb-2"
                 placeholder="Enunciado pregunta"

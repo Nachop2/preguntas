@@ -16,7 +16,11 @@ function App() {
     setPreguntas([...preguntas, nueva]);
   }
 
-
+  const removeQuestion = (id) => {
+    console.log("Aa" + id);
+    console.log(id);
+    setPreguntas(preguntas.filter((e) => e.id != id));
+  }
 
 
 
@@ -29,6 +33,7 @@ function App() {
 
       <PreguntasCreadas
         preguntas={preguntas}
+        removeQuestion={removeQuestion}
       ></PreguntasCreadas>
     </>
   );
