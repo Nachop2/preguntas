@@ -12,18 +12,59 @@ export const FormularioPregunta = ({ addPregunta }) => {
         favorita: false
     })
 
+    function handleValidation() {
+        let errors = [];
+        if (!pregunta.enunciado) {
+            errors.push("Enunciado");
+        }
+        if (!pregunta.respuesta1) {
+            errors.push("Respuesta 1");
+        }
+        if (!pregunta.respuesta2) {
+            errors.push("Respuesta 2");
+        }
+        if (!pregunta.respuesta3) {
+            errors.push("Respuesta 3");
+        }
+        if (!pregunta.respuesta4) {
+            errors.push("Respuesta 4");
+        }
+        if (pregunta.respuestacorrecta === -1) {
+            errors.push("Respuesta correcta");
+        }
+
+        // Return errors, or validation passed
+        if(errors.length == 0){
+            return true;
+        }else{
+            return errors;
+        }
+    }
+
     const handleSubmit = (e) => {
         e.preventDefault();
-        //Validate
-        addPregunta({
-            ...pregunta
-        });
-        Swal.fire({
-            icon: "success",
-            title: "Pregunta añadida correctamente",
-            showConfirmButton: false,
-            timer: 1200
-        })
+        let check = handleValidation();
+        if (check !== true) {
+            let errors = "";
+            check.forEach((e) => {
+                errors += ", " + e;
+            })
+            Swal.fire({
+                icon: "error",
+                title: "La pregunta tiene campos vacios" + errors,
+                showConfirmButton: true,
+            })
+        } else {
+            addPregunta({
+                ...pregunta
+            });
+            Swal.fire({
+                icon: "success",
+                title: "Pregunta añadida correctamente",
+                showConfirmButton: false,
+                timer: 1200
+            })
+        }
     }
 
     const handleChange = (e) => {
