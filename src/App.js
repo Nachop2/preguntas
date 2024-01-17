@@ -1,5 +1,6 @@
 import logo from './logo.svg';
 import './App.css';
+import Swal from 'sweetalert2';
 
 import { useState } from 'react';
 import { FormularioPregunta } from './components/FormularioPregunta.jsx';
@@ -17,9 +18,27 @@ function App() {
   }
 
   const removeQuestion = (id) => {
-    console.log("Aa" + id);
-    console.log(id);
-    setPreguntas(preguntas.filter((e) => e.id != id));
+    Swal.fire({
+      title: "Estas seguro?",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      cancelButtonText: "Cancelar",
+      confirmButtonText: "Si, estoy seguro"
+    }).then((result) => {
+      if (result.isConfirmed) {
+        console.log("Aa" + id);
+        console.log(id);
+        setPreguntas(preguntas.filter((e) => e.id != id));
+        Swal.fire({
+          title: "Eliminado!",
+          text: "La pregunta fue eliminada",
+          icon: "success"
+        });
+      }
+    });
+
   }
 
 

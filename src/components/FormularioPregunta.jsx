@@ -19,7 +19,6 @@ export const FormularioPregunta = ({ addPregunta }) => {
             ...pregunta
         });
         Swal.fire({
-            position: "top-end",
             icon: "success",
             title: "Pregunta añadida correctamente",
             showConfirmButton: false,
